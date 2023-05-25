@@ -1,5 +1,6 @@
 package de.bentolor.toolbox;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -421,7 +422,7 @@ public final class ExceptionTools {
             try {
                 List<String> codeLines = new ArrayList<String>();
                 while (bufferedReader.ready()) {
-                    codeLines.add(bufferedReader.readLine());
+                    codeLines.add(BoundedLineReader.readLine(bufferedReader, 1000000));
                 }
                 return codeLines.toArray(new String[codeLines.size()]);
             } finally {
